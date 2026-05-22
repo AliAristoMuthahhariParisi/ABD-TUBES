@@ -194,9 +194,7 @@ energy_df.printSchema()
 print("Schema weather dataset:")
 weather_df.printSchema()
 
-# =========================
 # 1. Cleaning energy dataset
-# =========================
 
 energy_df = energy_df.withColumn(
     "time",
@@ -245,9 +243,7 @@ energy_selected = energy_selected.withColumn("hour", hour(col("time"))) \
     .withColumn("year", year(col("time"))) \
     .withColumn("is_weekend", when(col("day_of_week").isin(1, 7), 1).otherwise(0))
 
-# ==========================
 # 2. Cleaning weather dataset
-# ==========================
 
 weather_df = weather_df.withColumn(
     "dt_iso",
@@ -288,9 +284,7 @@ weather_agg = weather_selected.groupBy("time").agg(
     avg("clouds_all").alias("avg_clouds_all")
 )
 
-# ==========================
 # 3. Join energy dan weather
-# ==========================
 
 silver_df = energy_selected.join(weather_agg, on="time", how="inner")
 
@@ -387,9 +381,7 @@ print("Data Silver:")
 silver_df.show(5)
 print("Jumlah data Silver:", silver_df.count())
 
-# ==========================
 # 1. Gold: Tren konsumsi bulanan
-# ==========================
 
 monthly_consumption = silver_df.groupBy("year", "month").agg(
     round(avg("total load actual"), 2).alias("avg_total_load_actual"),
@@ -405,9 +397,7 @@ monthly_consumption.write.mode("overwrite").parquet(
 print("Gold monthly_consumption:")
 monthly_consumption.show(10)
 
-# ==========================
 # 2. Gold: Pola konsumsi per jam
-# ==========================
 
 hourly_consumption = silver_df.groupBy("hour").agg(
     round(avg("total load actual"), 2).alias("avg_total_load_actual"),
@@ -422,9 +412,7 @@ hourly_consumption.write.mode("overwrite").parquet(
 print("Gold hourly_consumption:")
 hourly_consumption.show(24)
 
-# ==========================
 # 3. Gold: Produksi energi terbarukan
-# ==========================
 
 renewable_energy = silver_df.withColumn(
     "total_renewable_generation",
@@ -449,9 +437,7 @@ monthly_renewable.write.mode("overwrite").parquet(
 print("Gold monthly_renewable_generation:")
 monthly_renewable.show(10)
 
-# ==========================
 # 4. Gold: Dataset siap modeling
-# ==========================
 
 modeling_dataset = renewable_energy.select(
     "time",
@@ -517,13 +503,6 @@ mc cp --recursive ~/tubes_k11/data/gold/modeling_dataset local/gold/
 mc ls local/gold/
 ```
 
-Output yang diharapkan:
-
-```bash
-[DIR] monthly_consumption/
-[DIR] hourly_consumption/
-[DIR] monthly_renewable_generation/
-[DIR] modeling_dataset/
 ```
 
 ---
