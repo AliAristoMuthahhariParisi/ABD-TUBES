@@ -41,3 +41,15 @@ services:
     command: server /data --console-address ":9001"
 ```
 Simpan: Ctrl+X → Y → Enter
+
+### 1.4 Jalankan MinIO
+```bash
+cd ~/tubes_k11
+docker compose up -d
+
+# Cek container berjalan
+docker ps
+```
+Buka browser di Windows: 👉 http://localhost:9001
+Login: admin / admin123
+
