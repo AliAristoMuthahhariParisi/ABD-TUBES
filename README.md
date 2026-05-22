@@ -13,8 +13,9 @@ mkdir -p ~/tubes_k11/data/raw-data
 cd ~/tubes_k11
 ```
 ### 1.2 Download Dataset
-cd ~/tubes_k11/data/raw-data
 ```bash
+cd ~/tubes_k11/data/raw-data
+
 # Unduh energy_dataset
 wget https://raw.githubusercontent.com/AliAristoMuthahhariParisi/ABD-TUBES/refs/heads/main/Dataset/energy_dataset.csv
 
