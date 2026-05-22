@@ -174,6 +174,11 @@ docker compose down
 docker compose up -d
 docker ps
 ```
+Harus muncul 2 container: tubes-k11-minio dan tubes-k11-spark. Verifikasi Spark jalan
+```bash
+docker exec -it tubes-k11-spark spark-shell --version
+```
+Kalau muncul version 3.5.5 — Spark siap dipakai.
 
 # 2. Silver Layer
 
