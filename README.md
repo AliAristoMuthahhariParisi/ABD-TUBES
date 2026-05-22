@@ -53,3 +53,20 @@ docker ps
 Buka browser di Windows: 👉 http://localhost:9001
 Login: admin / admin123
 
+### 1.5 Upload dataset ke bucket Bronze
+```bash
+# Install MinIO client (mc)
+wget https://dl.min.io/client/mc/release/linux-amd64/mc
+chmod +x mc
+sudo mv mc /usr/local/bin/
+
+# Hubungkan mc ke MinIO lokal
+mc alias set local http://localhost:9000 admin admin123
+
+# Upload kedua CSV ke bucket bronze
+mc cp ~/tubes_k11/data/raw-data/energy_dataset.csv local/bronze/
+mc cp ~/tubes_k11/data/raw-data/weather_features.csv local/bronze/
+
+# Verifikasi
+mc ls local/bronze/
+```
