@@ -4,6 +4,8 @@
 kaggle: https://www.kaggle.com/datasets/nicholasjhana/energy-consumption-generation-prices-and-weather
 
 # Set-Up
+Pastikan ada docker dan wsl
+
 ## 1. Bronze layer
 ### 1.1 Buat struktur folder proyek
 ```bash
