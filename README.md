@@ -18,3 +18,26 @@ wget https://raw.githubusercontent.com/AliAristoMuthahhariParisi/ABD-TUBES/refs/
 # unduh weather_features
 wget https://raw.githubusercontent.com/AliAristoMuthahhariParisi/ABD-TUBES/refs/heads/main/Dataset/weather_features.csv
 ```
+### 1.3 Buat docker-compose.yml
+``` bash
+cd ~/tubes_k11
+nano docker-compose.yml
+```
+Isi:
+```bash
+version: '3.8'
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: tubes-k11-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin123
+    volumes:
+      - ./data:/data
+    command: server /data --console-address ":9001"
+```
+Simpan: Ctrl+X → Y → Enter
