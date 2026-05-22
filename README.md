@@ -80,8 +80,10 @@ mc ls local/bronze/
 ```bash
 cd ~/tubes_k11
 wget https://archive.apache.org/dist/spark/spark-3.5.5/spark-3.5.5-bin-hadoop3.tgz
-
-# Buat DockerFile
+```
+Buat DockerFile
+```bash
+nano Dockerfile
 ```
 Isi: 
 ```bash
