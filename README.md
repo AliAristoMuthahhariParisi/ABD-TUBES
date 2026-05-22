@@ -10,3 +10,11 @@ kaggle: https://www.kaggle.com/datasets/nicholasjhana/energy-consumption-generat
 mkdir -p ~/tubes_k11/data/raw-data
 cd ~/tubes_k11
 ```
+### 1.2 Download Dataset
+```bash
+# Unduh energy_dataset
+wget https://raw.githubusercontent.com/AliAristoMuthahhariParisi/ABD-TUBES/refs/heads/main/Dataset/energy_dataset.csv
+
+# unduh weather_features
+wget https://raw.githubusercontent.com/AliAristoMuthahhariParisi/ABD-TUBES/refs/heads/main/Dataset/weather_features.csv
+```
