@@ -121,7 +121,7 @@ WORKDIR /app
 ```
 Simpan: Ctrl+X → Y → Enter
 
-# Build Image
+Build Image
 ```bash
 docker build -t tubes-k11-spark:3.5.5 .
 ```
@@ -130,6 +130,7 @@ Tunggu sampai selesai (5–10 menit pertama kali). Verifikasi:
 ```bash
 docker images | grep tubes-k11-spark
 ```
+
 Update docker-compose.yml
 ```bash
 nano docker-compose.yml
