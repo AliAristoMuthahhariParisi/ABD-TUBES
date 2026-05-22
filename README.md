@@ -79,3 +79,47 @@ mc ls local/bronze/
 ## 2. Silver Layer
 
 Silver layer digunakan untuk membersihkan data mentah dari Bronze, mengubah tipe data timestamp, menangani missing values, membuat fitur waktu, mengagregasi data cuaca dari beberapa kota, lalu menggabungkan dataset energi dan cuaca menjadi data bersih siap analisis.
+
+# Set-Up Spark
+```bash
+cd ~/tubes_k11
+wget https://archive.apache.org/dist/spark/spark-3.5.5/spark-3.5.5-bin-hadoop3.tgz
+
+# Buat DockerFile
+```
+Isi: 
+```bash
+FROM python:3.11-slim
+
+# Install Java (wajib untuk Spark)
+RUN apt-get update && apt-get install -y \
+    default-jdk-headless \
+    procps \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+ENV PATH=$PATH:$JAVA_HOME/bin
+
+# Copy dan ekstrak Spark
+COPY spark-3.5.5-bin-hadoop3.tgz /opt/
+RUN tar -xzf /opt/spark-3.5.5-bin-hadoop3.tgz -C /opt/ \
+    && mv /opt/spark-3.5.5-bin-hadoop3 /opt/spark \
+    && rm /opt/spark-3.5.5-bin-hadoop3.tgz
+
+ENV SPARK_HOME=/opt/spark
+ENV PATH=$PATH:$SPARK_HOME/bin
+ENV PYSPARK_PYTHON=python3
+
+# Install library Python
+RUN pip install --no-cache-dir \
+    pyspark==3.5.5 \
+    pandas \
+    matplotlib \
+    seaborn \
+    boto3
+
+WORKDIR /app
+```
+Simpan: Ctrl+X → Y → Enter
+
