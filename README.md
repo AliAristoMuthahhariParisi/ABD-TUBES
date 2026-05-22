@@ -135,6 +135,46 @@ Update docker-compose.yml
 nano docker-compose.yml
 ```
 
+Ganti seluruh isinya:
+```bash
+version: '3.8'
+services:
+  minio:
+    image: minio/minio:latest
+    container_name: tubes-k11-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin123
+    volumes:
+      - ./data:/data
+    command: server /data --console-address ":9001"
+
+  spark:
+    image: tubes-k11-spark:3.5.5
+    container_name: tubes-k11-spark
+    ports:
+      - "4040:4040"   # Spark UI
+    volumes:
+      - ./scripts:/app/scripts    # folder untuk simpan file .py
+      - ./data:/data
+    stdin_open: true
+    tty: true
+    depends_on:
+      - minio
+```
+
+Simpan, lalu jalankan:
+```bash
+mkdir -p ~/tubes_k11/scripts
+
+docker compose down
+docker compose up -d
+docker ps
+```
+
 # 2. Silver Layer
 
 Silver layer digunakan untuk membersihkan data mentah dari Bronze, mengubah tipe data timestamp, menangani missing values, membuat fitur waktu, mengagregasi data cuaca dari beberapa kota, lalu menggabungkan dataset energi dan cuaca menjadi data bersih siap analisis.
