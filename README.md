@@ -13,6 +13,7 @@ mkdir -p ~/tubes_k11/data/raw-data
 cd ~/tubes_k11
 ```
 ### 1.2 Download Dataset
+cd ~/tubes_k11/data/raw-data
 ```bash
 # Unduh energy_dataset
 wget https://raw.githubusercontent.com/AliAristoMuthahhariParisi/ABD-TUBES/refs/heads/main/Dataset/energy_dataset.csv
@@ -54,6 +55,8 @@ docker ps
 ```
 Buka browser di Windows: 👉 http://localhost:9001
 Login: admin / admin123
+
+Buat 3 bucket: bronze, silver, gold
 
 ### 1.5 Upload dataset ke bucket Bronze
 ```bash
