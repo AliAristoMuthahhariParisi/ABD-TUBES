@@ -76,10 +76,6 @@ mc cp ~/tubes_k11/data/raw-data/weather_features.csv local/bronze/
 # Verifikasi
 mc ls local/bronze/
 ```
-## 2. Silver Layer
-
-Silver layer digunakan untuk membersihkan data mentah dari Bronze, mengubah tipe data timestamp, menangani missing values, membuat fitur waktu, mengagregasi data cuaca dari beberapa kota, lalu menggabungkan dataset energi dan cuaca menjadi data bersih siap analisis.
-
 # Set-Up Spark
 ```bash
 cd ~/tubes_k11
@@ -122,4 +118,9 @@ RUN pip install --no-cache-dir \
 WORKDIR /app
 ```
 Simpan: Ctrl+X → Y → Enter
+
+## 2. Silver Layer
+
+Silver layer digunakan untuk membersihkan data mentah dari Bronze, mengubah tipe data timestamp, menangani missing values, membuat fitur waktu, mengagregasi data cuaca dari beberapa kota, lalu menggabungkan dataset energi dan cuaca menjadi data bersih siap analisis.
+
 
